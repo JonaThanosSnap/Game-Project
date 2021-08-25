@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "Game-Project",
+			"path": "."
+		},
+		{
+			"name": "Assets",
+			"path": "..\\..\\..\\Desktop\\VSCode\\Projects\\Platformer Project\\Assets"
+		}
+	],
+	"settings": {}
+}
