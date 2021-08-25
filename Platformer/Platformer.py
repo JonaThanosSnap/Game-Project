@@ -26,7 +26,7 @@ class Player_Sprite(pygame.sprite.Sprite):
 
 
 PINK_MONSTER = Player_Sprite(
-    "C:/Users/andre/Documents/GitHub/Game-Project/Assets/1 Pink_Monster/Pink_Monster.png")
+    "Assets/1 Pink_Monster/Pink_Monster.png")
 
 ##### GAME FUNCTIONS #####
 
