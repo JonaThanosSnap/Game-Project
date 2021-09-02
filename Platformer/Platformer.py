@@ -18,10 +18,11 @@ monsters = pygame.sprite.Group()
 class Player_Sprite(pygame.sprite.Sprite):
     def __init__(self, picture_path):
         super().__init__()
-        self.image = pygame.transform.scale(pygame.image.load(picture_path), (128,128))
+        self.image = pygame.transform.scale(pygame.image.load(picture_path), (150,130))
         self.rect = self.image.get_rect()
         self.mask = pygame.mask.from_surface(self.image)
-        self.walking = False
+        self.walking_right = False
+        self.walking_left = False
         self.jumping = False
         self.current_frame = 0
         self.last_update = 0
@@ -37,7 +38,12 @@ class Player_Sprite(pygame.sprite.Sprite):
     def animate(self):
         now = pygame.time.get_ticks()
 
-        if self.walking == True:
+        if self.walking_right == True:
+            if now - self.last_update > 200:
+                self.last_update = now
+                self.current_frame = (self.current_frame + 1) % 5
+                self.image = self.walking_frames[self.current_frame]
+        elif self.walking_left == True:
             if now - self.last_update > 200:
                 self.last_update = now
                 self.current_frame = (self.current_frame + 1) % 5
@@ -70,12 +76,13 @@ def movement(keys_pressed, character, up, down, left, right):  # MOVES THE CHARA
         character.rect.y += VEL
     if keys_pressed[left]: # LEFT KEY
         character.rect.x -= VEL
-        character.walking = True
+        character.walking_left = True
     if keys_pressed[right]: # RIGHT KEY
         character.rect.x += VEL
-        character.walking = True
+        character.walking_right = True
     else:
-        character.walking = False
+        character.walking_right = False
+        character.walking_left = False
         character.jumping = False
         character.image = character.idle_frame
     
